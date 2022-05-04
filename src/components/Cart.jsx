@@ -14,10 +14,8 @@ const Cart = () => {
   const [loading, setLoading] = useState(false);
 
 
-  const dispatch= useDispatch();
-  const addProduct = (product) =>{
-      dispatch(addCart(product));
-  }
+
+ 
 
   useEffect(() => {
       const getProduct = async () => {
@@ -32,9 +30,15 @@ const Cart = () => {
   const Loading = () => {
       return (
           <React.Fragment>
-              <div className='col-md-6'>
-              ...
-              </div>
+          <div className='col-md-8'>
+          <Skeleton height={400} />
+          </div>
+          <div className='col-md-6' style={{lineHeight:2}}>
+          <Skeleton height={50} width={300} />
+          <Skeleton height={75} />
+          <Skeleton height={25} width={150} />
+          
+          </div>
           </React.Fragment>
       )
   }
@@ -48,20 +52,37 @@ const Cart = () => {
                         <div className='col-md-4'>
                           <img src={product.image} alt={product.title} height="200px" width="180px" />
                         </div>
+                        <div className='col-md-4'>
+                        <h3>{product.title}</h3>
+                        <p className='lead fw-bold'> 
+                        {product.qty} X ${product.price} = $
+                        {product.qty * product.price}
+                        </p>
+                        <button className="btn btn-outline-dark me-4"
+                        onClick={()=> handleButton(product
+                        )}
+                        ><i className='fa fa-minus'></i></button>
+                        <button className="btn btn-outline-dark me-4"
+                        onClick={()=> handleButton(product
+                        )}
+                        ><i className='fa fa-plus'></i></button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                
-  
-          </React.Fragment>
+            </React.Fragment>
       )
+  }
+
+  const handleButton = ()=>{
+
   }
 
   return (
       <div>
           <div className='container py-5'>
               <div className='row py-5'>
-                  {loading ? <Loading /> : <ShowProduct />}
+                  {loading ?  <ShowProduct /> : <Loading />}
               </div>
           </div>
       </div>
