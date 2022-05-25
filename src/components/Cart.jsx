@@ -69,6 +69,7 @@ const Cart = () => {
                         </div>
                       </div>
                     </div>
+                    <p>Work in progress</p>
                   </div>
             </React.Fragment>
       )
